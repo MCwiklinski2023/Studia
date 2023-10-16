@@ -1,0 +1,50 @@
+namespace What_IF
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int A = int.Parse(Console.ReadLine());
+
+            if (( 1 <= A ) && ( A <= 10 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 1 do 10");
+            }
+
+            else if (( 11 <= A ) && ( A <= 100 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 11 do 100");
+            }
+
+            else if (( 101 <= A ) && ( A <= 1000 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 101 do 1.000");
+            }
+
+            else if (( 1001 <= A ) && ( A <= 10000 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 1.001 do 10.000");
+            }
+
+            else if (( 10001 <= A ) && ( A <= 100000 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 10.001 do 100.000");
+            }
+
+            else if (( 100001 <= A ) && ( A <= 1000000 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 100.001 do 1.000.000");
+            }
+
+            else if (( 1000001 <= A ) && ( A <= 10000000 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 1.000.001 do 10.000.000");
+            }
+
+            else if (( 10000001 <= A ) && ( A <= 100000000 ))
+            {
+                Console.WriteLine("Liczba jest w przedziale 10.000.001 do 100.000.000");
+            }
+        }
+    }
+}

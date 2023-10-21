@@ -1,0 +1,42 @@
+using System.Reflection;
+
+namespace ConsoleApp1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Ilość Tablic jakie trzeba wykreować
+            Console.WriteLine("Podaj ilośc zmiennych");
+           int A = int.Parse(Console.ReadLine());   
+
+            int[] speed = new int [A];
+
+            for (int i = 0; i < A; i++) 
+            {
+                Console.WriteLine("Podaj 2 prędkości ");
+                int v1 = int.Parse(Console.ReadLine());
+                int v2 = int.Parse(Console.ReadLine());
+
+                int Wynik = CalculateAverageSpeed(v1, v2);
+                speed [i] = Wynik;
+
+            }
+            Console.WriteLine("Średnia prędkość dla tabeli");
+            for (int i = 0;i < speed.Length;i++) 
+            {
+                Console.WriteLine(speed[i]);
+            }
+
+
+
+            static int CalculateAverageSpeed(int v1, int v2) 
+            { 
+                return (2 * v1 * v2) / (v1 + v2); // Obliczenie i zwrócenie średniej prędkości
+            }
+
+
+
+        }
+    }
+}

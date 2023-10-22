@@ -5,21 +5,17 @@ drop table if exists zakupy;
 
 create table zakupy
 (
-	id		int
-	,id_faktua varchar( 25 )
-	,liczba_pozycji smallint default 1
+	id int primary key
+	,id_faktua varchar(30)
+	,liczba_pozycji smallint default 1 not null check( 0>= liczba_pozycji AND liczba_pozycji >=100 )
 	,kategoria varchar null
-	,data
-	,kwota_netto money null
-	,kwota_Vat money default > kwota_netto
+	,[data] date default getdate()
+	,kwota_netto money not null
+	,kwota_Vat money check (kwota_Vat > kwota_netto) not null
 	,rabat money
 	,kwota_calkowita AS kwota_netto - rabat - kwota_Vat
 );
 go
-
-insert into zakupy values 
-(1, 'Opel', 'Kra1'),
-(2, 'Fiat', 'Kra2');
 
 select * from zakupy;
 go

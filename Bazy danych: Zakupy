@@ -1,0 +1,25 @@
+use lab2;
+go 
+
+drop table if exists zakupy;
+
+create table zakupy
+(
+	id		int
+	,id_faktua varchar( 25 )
+	,liczba_pozycji smallint default 1
+	,kategoria varchar null
+	,data
+	,kwota_netto money null
+	,kwota_Vat money default > kwota_netto
+	,rabat money
+	,kwota_calkowita AS kwota_netto - rabat - kwota_Vat
+);
+go
+
+insert into zakupy values 
+(1, 'Opel', 'Kra1'),
+(2, 'Fiat', 'Kra2');
+
+select * from zakupy;
+go

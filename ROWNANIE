@@ -1,0 +1,35 @@
+namespace ROWNANIE
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        { 
+           string numbers;
+           while ((numbers = Console.ReadLine()) != null)
+            {
+                string[] tab = numbers.Split(' ');
+                double a = double.Parse(tab[0]);
+                double b = double.Parse(tab[1]); 
+                double c = double.Parse(tab[2]);
+                double delta = Math.Pow(b, 2) - 4 * a * c;
+
+                if (delta > 0)
+                {
+                    Console.WriteLine("2");
+                }
+
+                else if (delta == 0)
+                {
+                    Console.WriteLine("1");
+                }
+
+                else
+                {
+                    Console.WriteLine("0");
+                }
+            }
+
+
+        }
+    }
+}

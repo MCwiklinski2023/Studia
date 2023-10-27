@@ -1,0 +1,51 @@
+namespace ROWNANIE
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string numbers;
+            while ((numbers = Console.ReadLine()) != null)
+            {
+
+                // Tworzenie tabeli i przypisywanie i wartości
+                string[] tab = numbers.Split(' ');
+                string x = tab[0];
+                int a = int.Parse(tab[1]);
+                int b = int.Parse(tab[2]);
+
+                if ( x == "-" )
+                {
+                    Console.WriteLine( a - b );
+                }
+
+                else if ( x == "+" )
+                {
+                    Console.WriteLine( a + b );
+                }
+
+                else if ( x == "*" )
+                {
+                    Console.WriteLine( a * b );
+                } 
+
+                else if ( x == "/" )
+                {
+                     Console.WriteLine(a / b);
+                }
+
+                else if ( x == "%" )
+                {
+                     Console.WriteLine(a % b);
+                }
+
+
+
+
+
+            }
+
+
+        }
+    }
+}

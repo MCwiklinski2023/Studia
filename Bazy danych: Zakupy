@@ -19,3 +19,30 @@ go
 
 select * from zakupy;
 go
+
+
+use Zakupy;
+go 
+
+drop table if exists zakupy;
+
+create table zakupy
+(
+	id int primary key not null
+	,id_faktua varchar(30) unique not null
+	,liczba_pozycji tinyint default(1) not null check( 0>= liczba_pozycji AND liczba_pozycji >=100 )
+	,kategoria varchar null
+	,[data] date not null default( getdate() ) check( data <= getdate() )
+	,kwota_netto money not null
+	,kwota_Vat money  not null 
+	,rabat money default(0) check( rabat>= 0 AND rabat<= 30 ) not null
+	,kwota_calkowita AS (kwota_netto - rabat) * kwota_Vat 
+);
+
+go
+insert into zakupy 
+values ('A001', 100, 'paliwo', 2020-12-2, 123.00, 24.00,0.00)
+;
+
+select * from zakupy;
+go

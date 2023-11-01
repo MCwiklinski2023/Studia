@@ -20,7 +20,7 @@ go
 select * from zakupy;
 go
 
-
+Nowa wersja
 use Zakupy;
 go 
 
@@ -28,10 +28,10 @@ drop table if exists zakupy;
 
 create table zakupy
 (
-	id int primary key not null
+	id int primary key not null identity(1,1)
 	,id_faktua varchar(30) unique not null
-	,liczba_pozycji tinyint default(1) not null check( 0>= liczba_pozycji AND liczba_pozycji >=100 )
-	,kategoria varchar null
+	,liczba_pozycji tinyint default(1) not null check( liczba_pozycji >= 0 AND liczba_pozycji <=100 )
+	,kategoria nvarchar(50) null
 	,[data] date not null default( getdate() ) check( data <= getdate() )
 	,kwota_netto money not null
 	,kwota_Vat money  not null 
@@ -41,7 +41,8 @@ create table zakupy
 
 go
 insert into zakupy 
-values ('A001', 100, 'paliwo', 2020-12-2, 123.00, 24.00,0.00)
+values 
+('A001',1 , 'paliwo' , getdate(), 123.00, 24.00,3.00)
 ;
 
 select * from zakupy;

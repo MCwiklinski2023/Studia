@@ -1,26 +1,3 @@
-use lab2;
-go 
-
-drop table if exists zakupy;
-
-create table zakupy
-(
-	id int primary key
-	,id_faktua varchar(30)
-	,liczba_pozycji smallint default 1 not null check( 0>= liczba_pozycji AND liczba_pozycji >=100 )
-	,kategoria varchar null
-	,[data] date default getdate()
-	,kwota_netto money not null
-	,kwota_Vat money check (kwota_Vat > kwota_netto) not null
-	,rabat money
-	,kwota_calkowita AS kwota_netto - rabat - kwota_Vat
-);
-go
-
-select * from zakupy;
-go
-
-Nowa wersja
 use Zakupy;
 go 
 
@@ -29,21 +6,27 @@ drop table if exists zakupy;
 create table zakupy
 (
 	id int primary key not null identity(1,1)
-	,id_faktua varchar(30) unique not null
-	,liczba_pozycji tinyint default(1) not null check( liczba_pozycji >= 0 AND liczba_pozycji <=100 )
-	,kategoria nvarchar(50) null
+	,id_faktua varchar(30) not null unique 
+	,liczba_pozycji tinyint not null default(1) check( liczba_pozycji >= 0 AND liczba_pozycji <= 100 )
+	,kategoria varchar(50) null
 	,[data] date not null default( getdate() ) check( data <= getdate() )
 	,kwota_netto money not null
 	,kwota_Vat money  not null 
-	,rabat money default(0) check( rabat>= 0 AND rabat<= 30 ) not null
-	,kwota_calkowita AS (kwota_netto - rabat) * kwota_Vat 
+	,rabat money not null default(0) check( rabat >= 0 AND rabat <= 30 )
+	,check (kwota_Vat < kwota_netto)
+	,kwota_calkowita AS ( kwota_netto - ( kwota_netto * (rabat / 100) )) + kwota_Vat 
+	
 );
-
 go
+
 insert into zakupy 
 values 
-('A001',1 , 'paliwo' , getdate(), 123.00, 24.00,3.00)
+	('A001', 10, 'paliwo', default, 123, 100, 3)
+	,('A002', 99, 'elektronika', '2020-10-12', 361, 200, default)
+	,('A003', 5, 'licencja', '2022-01-09', 543, 200, 30)
 ;
 
 select * from zakupy;
 go
+
+

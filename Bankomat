@@ -1,0 +1,66 @@
+using System;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Wybierz opcje:");
+            Console.WriteLine("1. Wpłata");
+            Console.WriteLine("2. Wypłata");
+            Console.WriteLine("3. Saldo");
+            Console.WriteLine("4 Wyjście");
+
+            int konto = 0 ;
+
+            string operation;
+            while ((operation = Console.ReadLine()) != null)
+            {
+                string[] tab = operation.Split(' ');
+                int a = int.Parse(tab[0]);
+
+                
+
+                if (a == 1)
+                {
+                    Console.WriteLine("Podaj kwote do wpłaty");
+
+                    int wplata = int.Parse(Console.ReadLine());
+
+
+                    Console.WriteLine("Nowe saldo:" + konto );
+
+                }
+
+                else if (a == 2)
+                {
+                    Console.WriteLine("Podaj kwote do wypłaty");
+
+                    int wyplata = int.Parse(Console.ReadLine());
+
+
+                    Console.WriteLine("Nowe saldo:" + konto );
+
+                }
+
+                else if (a == 3)
+                {
+                    Console.WriteLine("Saldo wynosi :" + konto );
+                }
+
+                else if (a == 4)
+                {
+                    Console.WriteLine("4");
+                }
+
+         
+
+
+            }
+
+      
+     
+        }
+    }
+}

@@ -18,7 +18,7 @@ create table samochody
 	,cena_sprzedazy money null check (cena_sprzedazy >= 5000)
 	,data_sprzedazy date null
 	,data_wprowadzenia datetime not null default( getdate() ) check( data_wprowadzenia <= getdate() )
-	,check( stan_nowy = 1 AND przebieg = 0 or stan_nowy = 0 AND przebieg >= 0 )
+	,check( stan_nowy = 1 AND przebieg = 0 or stan_nowy = 0 AND przebieg > 0 )
 );
 
 

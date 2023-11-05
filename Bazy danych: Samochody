@@ -18,35 +18,18 @@ create table samochody
 	,cena_sprzedazy money null check (cena_sprzedazy >= 5000)
 	,data_sprzedazy date null
 	,data_wprowadzenia datetime not null default( getdate() ) check( data_wprowadzenia <= getdate() )
-
+	,check( stan_nowy = 1 AND przebieg = 0 or stan_nowy = 0 AND przebieg >= 0 )
 );
-go
 
-CREATE TRIGGER diagonstyka 
-ON  samochody  
-AFTER INSERT 
-AS  
-BEGIN 
-    UPDATE samochody
-    SET przebieg = CASE
-	when samochody.stan_nowy = 1 and samochody.przebieg = 0 then 0
-	when samochody.stan_nowy = 1 and samochody.przebieg > 0 then samochody.przebieg
-	when samochody.stan_nowy = 0 and samochody.przebieg = 0 then 100
-	when samochody.stan_nowy = 0 and samochody.przebieg > 0 then samochody.przebieg
-	end
-    FROM samochody
-    INNER JOIN inserted i on i.VIN = samochody.VIN
-END  
-go
 
 insert into samochody
 values 
-	( 'VW', 'T4', default, 2019, 'diesel', '4A3AK24F19E023423', null, 1, 0, 60000, '2022-12-20', default )
-	,( 'KIA', 'Sportage', 'sedan', default, 'elektryczny', '1D4GP24R15B360603', 'KRA1234', 1, 20, 115000, '2023-04-26', default )
+	( 'VW', 'T4', default, 2019, 'diesel', '4A3AK24F19E023423', null, 0, 0, 60000, '2022-12-20', default )
+	,( 'KIA', 'Sportage', 'sedan', default, 'elektryczny', '1D4GP24R15B360603', 'KRA1234', 0, 20, 115000, '2023-04-26', default )
 	,( 'Mercedes-Benz', 'W210', 'kombi', 2015, 'benzyna', 'JH2PC2501NM101548', null, 0, 0, 20500, '2019-03-05', default )
 	,( 'Man', 'TGX', 'inne', 2013, 'hybryda', '1GNDS13S642330192', 'KRA5678', 0, 30, 20000, '2022-12-12', default )
-	,( 'Volvo', 'XC70', 'SUV', 2020, 'benzyna', '1G1JC5243W7155482', 'KBC123', 1, default, 50000, '2014-09-18', default )
-	,( 'Ford', 'Focus', 'hatchback', default, 'LPG', 'JH4DC4451RS026824', 'KRA1214', default, 53408, 37000, null, default )
+	,( 'Volvo', 'XC70', 'SUV', 2020, 'benzyna', '1G1JC5243W7155482', 'KBC123', 0, default, 50000, '2014-09-18', default )
+	,( 'Ford', 'Focus', 'hatchback', default, 'LPG', 'JH4DC4451RS026824', 'KRA1214', 0, 53408, 37000, null, default )
 ;
 
 

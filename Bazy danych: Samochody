@@ -18,13 +18,13 @@ create table samochody
 	,cena_sprzedazy money null check (cena_sprzedazy >= 5000)
 	,data_sprzedazy date null
 	,data_wprowadzenia datetime not null default( getdate() ) check( data_wprowadzenia <= getdate() )
-	,check( stan_nowy = 1 AND przebieg = 0 or stan_nowy = 0 AND przebieg > 0 )
+	,constraint CK_diagnostyka check( stan_nowy = 1 AND przebieg = 0 or stan_nowy = 0 AND przebieg >= 0 )
 );
 
 
 insert into samochody
 values 
-	( 'VW', 'T4', default, 2019, 'diesel', '4A3AK24F19E023423', null, 0, 0, 60000, '2022-12-20', default )
+	( 'VW', 'T4', default, 2019, 'diesel', '4A3AK24F19E023423', null, 1, 0, 60000, '2022-12-20', default )
 	,( 'KIA', 'Sportage', 'sedan', default, 'elektryczny', '1D4GP24R15B360603', 'KRA1234', 0, 20, 115000, '2023-04-26', default )
 	,( 'Mercedes-Benz', 'W210', 'kombi', 2015, 'benzyna', 'JH2PC2501NM101548', null, 0, 0, 20500, '2019-03-05', default )
 	,( 'Man', 'TGX', 'inne', 2013, 'hybryda', '1GNDS13S642330192', 'KRA5678', 0, 30, 20000, '2022-12-12', default )

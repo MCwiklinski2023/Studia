@@ -1,0 +1,121 @@
+using System.Globalization;
+
+namespace Fale
+{
+    internal class Program
+    {
+        public static void Fala(int n)
+        {
+
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int k = 0; k < n; k++)
+                    {
+                        for (int i = 0; i < 3 - j - 1 ; i++)
+                        {
+                            Console.Write(" ");
+                        }
+
+                        for (int i = 0; i < j + 1 ; i++)
+                        {
+                            Console.Write("|");
+                        }
+
+                    }
+
+                    Console.WriteLine();
+            }       
+
+        }
+
+
+
+
+        public static double Srednia(int[] tab2) 
+        {
+            int suma = 0;
+
+            for (int i = 0; i < tab2.Length; i++)
+            {
+                suma += tab2[i];
+            }
+
+            float srednia = suma / tab2.Length;
+
+            return srednia;
+        }
+
+        public static int MAX(int[] tabela) 
+        {
+            int max = tabela[0];
+            
+            for (int i = 0;i < tabela.Length;i++)
+            {
+                if (tabela[i] > max)
+                { 
+                    max = tabela[i];
+                }
+            }
+            return max;
+        }
+
+        public static int MIN(int[] tabela)
+        {
+            int min = tabela[0];
+
+            for (int i = 0; i < tabela.Length; i++)
+            {
+                if (tabela[i] < min)
+                {
+                    min = tabela[i];
+                }
+            }
+            return min;
+        }
+
+        public static int SUMA(int[] tab2)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < tab2.Length/2 ; i++)
+            {
+                if (tab2[i] == tab2[tab2.Length - 1 - i] && tab2.Length % 2 == 0) 
+                {
+                    sum += tab2[i] * 2;
+                }
+            }
+
+            return sum;
+        }
+
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Podaj liczby");
+
+            string numb;
+            while ((numb = Console.ReadLine()) != null) 
+            {
+                string[] tab = numb.Split(' ');
+
+                int[] tab2 = new int[tab.Length];
+
+                int suma = 0;
+
+                for (int i = 0; i < tab.Length; i++)
+                {
+                    tab2[i] = int.Parse(tab[i]);    
+                }
+
+                Fala(8);
+               Console.WriteLine(SUMA(tab2));
+               Console.WriteLine(MIN(tab2));
+               Console.WriteLine(MAX(tab2));
+               Console.WriteLine(Srednia(tab2));
+
+            }
+
+        }
+
+    }
+}
